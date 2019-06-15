@@ -16,4 +16,11 @@ module.exports = (app) => {
         res.redirect('/error');
       });
   });
+
+  app.get('/check', (req, res) => {
+    res.send('sucker');
+  });
+  app.get('/checked', (req, res) => {
+    res.send('suckererrrrr');
+  });
 };

@@ -5,6 +5,9 @@ import { HashRouter } from 'react-router-dom';
 import './assets/styles/base.scss';
 import 'sweetalert/dist/sweetalert.css';
 import Main from './pages/Main';
+import firebase from './firebase';
+import App from './App'
+
 import configureStore from './config/configureStore';
 import { Provider } from 'react-redux';
 
@@ -22,11 +25,22 @@ const renderApp = Component => {
   );
 };
 
-renderApp(Main);
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        renderApp(Main);
+    } else {
+        // No user is signed in.
+        renderApp(App);
+    }
+});
+
+
+
 
 if (module.hot) {
-  module.hot.accept('./pages/Main', () => {
-    const NextApp = require('./pages/Main').default
+
+  module.hot.accept('./pages/Login', () => {
+    const NextApp = require('./pages/Login').default
     renderApp(NextApp);
   });
 }

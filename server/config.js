@@ -1,19 +1,9 @@
 module.exports = {
-  baseUrl: {
-    protocol: 'http',
-    hostname: 'api.openweathermap.org',
-    path: '/data/2.5/weather',
-  },
 
-  query: {
-    name: 'q',
-    id: 'id',
-    coordinates: {
-      latitude: 'lat',
-      longitude: 'lon',
-    },
-    zipcode: 'zip',
-  },
+  host     : 'localhost',
+      user     : 'liongrou_wdwp',
+    password : '11ics104',
+    database : 'liongrou_wdwpData',
+    port:8889
 
-  APIkey: '<Your-API-key>',
 };

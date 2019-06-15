@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import { setMobileNavVisibility } from '../../reducers/Layout';
 import { withRouter } from 'react-router-dom';
-
+import firebase from '../../firebase';
 import Header from './Header';
 import Footer from './Footer';
 import SideBar from '../../components/SideBar';
+
+
 import ThemeOptions from '../../components/ThemeOptions';
 import MobileMenu from '../../components/MobileMenu';
 /**
@@ -21,6 +23,11 @@ import Forms from '../Forms';
 import Charts from '../Charts';
 import Calendar from '../Calendar';
 import Tables from '../Tables';
+import Login from '../Login';
+
+
+
+
 
 const Main = ({
   mobileNavVisibility,
@@ -32,29 +39,31 @@ const Main = ({
       hideMobileMenu();
     }
   });
-  return (
-    <div className={cx({
-      'nav-open': mobileNavVisibility === true
-    })}>
-      <div className="wrapper">
-        <div className="close-layer" onClick={hideMobileMenu}></div>
-        <SideBar />
 
-        <div className="main-panel">
-          <Header />
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/components" component={Components} />
-          <Route path="/profile" component={UserProfile} />
-          <Route path="/forms" component={Forms} />
-          <Route path="/tables" component={Tables} />
-          <Route path="/maps" component={MapsPage} />
-          <Route path="/charts" component={Charts} />
-          <Route path="/calendar" component={Calendar} />
-          <Footer />
+    return (
+        <div className={cx({
+          'nav-open': mobileNavVisibility === true
+        })}>
+          <div className="wrapper">
+            <div className="close-layer" onClick={hideMobileMenu}></div>
+            <SideBar />
+            <div className="main-panel">
+              <Header />
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/dashboard" component = {Dashboard}/>
+              <Route path="/components" component={Components} />
+              <Route path="/profile" component={UserProfile} />
+              <Route path="/forms" component={Forms} />
+              <Route path="/tables" component={Tables} />
+              <Route path="/maps" component={MapsPage} />
+              <Route path="/charts" component={Charts} />
+              <Route path="/calendar" component={Calendar} />
+              <Route path='/login' component={Login}/>
+              <Footer />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  )
+    );
 };
 
 const mapStateToProp = state => ({
